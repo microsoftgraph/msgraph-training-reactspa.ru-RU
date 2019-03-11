@@ -1,0 +1,3 @@
+# <a name="completed-module-create-a-react-single-page-app"></a>Завершенный модуль: создание приложения, поддерживающего одиночную страницу
+
+Версия проекта в этом каталоге отражает выполнение руководства с помощью создания одностраничного [приложения](https://docs.microsoft.com/graph/training/react-tutorial?tutorial-step=1). Если вы используете эту версию проекта, вам необходимо выполнить все остальные руководства, начиная с [регистрации приложения на портале](https://docs.microsoft.com/graph/training/react-tutorial?tutorial-step=2).
