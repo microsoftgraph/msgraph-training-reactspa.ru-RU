@@ -3,7 +3,7 @@
 Откройте интерфейс командной строки (CLI), перейдите к каталогу, в котором у вас есть права на создание файлов, и выполните следующие команды, чтобы установить средство [создать-реагирующий App](https://www.npmjs.com/package/create-react-app) и создать новое приложение для реагирования.
 
 ```Shell
-npm install create-react-app@2.1.0 -g
+npm install create-react-app@2.1.5 -g
 create-react-app graph-tutorial
 ```
 
@@ -28,8 +28,8 @@ npm start
 Выполните следующую команду в командной панели CLI.
 
 ```Shell
-npm install react-router-dom@4.3.1 bootstrap@4.1.3 reactstrap@6.5.0 @fortawesome/fontawesome-free@5.4.2
-npm install moment@2.22.2 msal@0.2.3 @microsoft/microsoft-graph-client@1.3.0
+npm install react-router-dom@4.3.1 bootstrap@4.3.1 reactstrap@7.1.0 @fortawesome/fontawesome-free@5.7.2
+npm install moment@2.24.0 msal@0.2.4 @microsoft/microsoft-graph-client@1.5.2
 ```
 
 ## <a name="design-the-app"></a>Проектирование приложения
