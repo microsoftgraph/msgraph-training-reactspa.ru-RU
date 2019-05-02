@@ -1,40 +1,40 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-<span data-ttu-id="d5e7a-101">Откройте интерфейс командной строки (CLI), перейдите к каталогу, в котором у вас есть права на создание файлов, и выполните следующие команды, чтобы установить средство [создать-реагирующий App](https://www.npmjs.com/package/create-react-app) и создать новое приложение для реагирования.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-101">Open your command-line interface (CLI), navigate to a directory where you have rights to create files, and run the following commands to install the [create-react-app](https://www.npmjs.com/package/create-react-app) tool and create a new React app.</span></span>
+<span data-ttu-id="e53e7-101">Откройте интерфейс командной строки (CLI), перейдите к каталогу, в котором у вас есть права на создание файлов, и выполните следующие команды, чтобы установить средство [создать-реагирующий App](https://www.npmjs.com/package/create-react-app) и создать новое приложение для реагирования.</span><span class="sxs-lookup"><span data-stu-id="e53e7-101">Open your command-line interface (CLI), navigate to a directory where you have rights to create files, and run the following commands to install the [create-react-app](https://www.npmjs.com/package/create-react-app) tool and create a new React app.</span></span>
 
 ```Shell
 npm install create-react-app@2.1.5 -g
 create-react-app graph-tutorial
 ```
 
-<span data-ttu-id="d5e7a-102">После завершения выполнения команды перейдите к `graph-tutorial` каталогу в CLI и выполните следующую команду для запуска локального веб-сервера.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-102">Once the command finishes, change to the `graph-tutorial` directory in your CLI and run the following command to start a local web server.</span></span>
+<span data-ttu-id="e53e7-102">После завершения выполнения команды перейдите к `graph-tutorial` каталогу в CLI и выполните следующую команду для запуска локального веб-сервера.</span><span class="sxs-lookup"><span data-stu-id="e53e7-102">Once the command finishes, change to the `graph-tutorial` directory in your CLI and run the following command to start a local web server.</span></span>
 
 ```Shell
 npm start
 ```
 
-<span data-ttu-id="d5e7a-103">Браузер, используемый по умолчанию, открывается [https://localhost:3000/](https://localhost:3000) с используемой по умолчанию страницей отклика.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-103">Your default browser opens to [https://localhost:3000/](https://localhost:3000) with a default React page.</span></span> <span data-ttu-id="d5e7a-104">Если браузер не открыт, откройте его и перейдите к [https://localhost:3000/](https://localhost:3000) странице, чтобы убедиться, что новое приложение работает.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-104">If your browser doesn't open, open it and browse to [https://localhost:3000/](https://localhost:3000) to verify that the new app works.</span></span>
+<span data-ttu-id="e53e7-103">Браузер, используемый по умолчанию, открывается [https://localhost:3000/](https://localhost:3000) с используемой по умолчанию страницей отклика.</span><span class="sxs-lookup"><span data-stu-id="e53e7-103">Your default browser opens to [https://localhost:3000/](https://localhost:3000) with a default React page.</span></span> <span data-ttu-id="e53e7-104">Если браузер не открыт, откройте его и перейдите к [https://localhost:3000/](https://localhost:3000) странице, чтобы убедиться, что новое приложение работает.</span><span class="sxs-lookup"><span data-stu-id="e53e7-104">If your browser doesn't open, open it and browse to [https://localhost:3000/](https://localhost:3000) to verify that the new app works.</span></span>
 
-<span data-ttu-id="d5e7a-105">Прежде чем переходить, установите несколько дополнительных пакетов, которые будут использоваться позже:</span><span class="sxs-lookup"><span data-stu-id="d5e7a-105">Before moving on, install some additional packages that you will use later:</span></span>
+<span data-ttu-id="e53e7-105">Прежде чем переходить, установите несколько дополнительных пакетов, которые будут использоваться позже:</span><span class="sxs-lookup"><span data-stu-id="e53e7-105">Before moving on, install some additional packages that you will use later:</span></span>
 
-- <span data-ttu-id="d5e7a-106">[реагирующий маршрутизатор — модель DOM](https://github.com/ReactTraining/react-router) для декларативной маршрутизации в приложении реагируя.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-106">[react-router-dom](https://github.com/ReactTraining/react-router) for declarative routing inside the React app.</span></span>
-- <span data-ttu-id="d5e7a-107">[Начальная](https://github.com/twbs/bootstrap) Загрузка стилей и общих компонентов.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-107">[bootstrap](https://github.com/twbs/bootstrap) for styling and common components.</span></span>
-- <span data-ttu-id="d5e7a-108">[реактстрап](https://github.com/reactstrap/reactstrap) для отклика компонентов на основе начальной загрузки.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-108">[reactstrap](https://github.com/reactstrap/reactstrap) for React components based on Bootstrap.</span></span>
-- <span data-ttu-id="d5e7a-109">[фонтавесоме — без](https://github.com/FortAwesome/Font-Awesome) значков.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-109">[fontawesome-free](https://github.com/FortAwesome/Font-Awesome) for icons.</span></span>
-- <span data-ttu-id="d5e7a-110">[](https://github.com/moment/moment) время для форматирования даты и времени.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-110">[moment](https://github.com/moment/moment) for formatting dates and times.</span></span>
-- <span data-ttu-id="d5e7a-111">[msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) для проверки подлинности в Azure Active Directory и получения маркеров доступа.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-111">[msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) for authenticating to Azure Active Directory and retrieving access tokens.</span></span>
-- <span data-ttu-id="d5e7a-112">[Microsoft — Graph — клиент](https://github.com/microsoftgraph/msgraph-sdk-javascript) для совершения звонков в Microsoft Graph.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-112">[microsoft-graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) for making calls to Microsoft Graph.</span></span>
+- <span data-ttu-id="e53e7-106">[реагирующий маршрутизатор — модель DOM](https://github.com/ReactTraining/react-router) для декларативной маршрутизации в приложении реагируя.</span><span class="sxs-lookup"><span data-stu-id="e53e7-106">[react-router-dom](https://github.com/ReactTraining/react-router) for declarative routing inside the React app.</span></span>
+- <span data-ttu-id="e53e7-107">[Начальная](https://github.com/twbs/bootstrap) Загрузка стилей и общих компонентов.</span><span class="sxs-lookup"><span data-stu-id="e53e7-107">[bootstrap](https://github.com/twbs/bootstrap) for styling and common components.</span></span>
+- <span data-ttu-id="e53e7-108">[реактстрап](https://github.com/reactstrap/reactstrap) для отклика компонентов на основе начальной загрузки.</span><span class="sxs-lookup"><span data-stu-id="e53e7-108">[reactstrap](https://github.com/reactstrap/reactstrap) for React components based on Bootstrap.</span></span>
+- <span data-ttu-id="e53e7-109">[фонтавесоме — без](https://github.com/FortAwesome/Font-Awesome) значков.</span><span class="sxs-lookup"><span data-stu-id="e53e7-109">[fontawesome-free](https://github.com/FortAwesome/Font-Awesome) for icons.</span></span>
+- <span data-ttu-id="e53e7-110">[](https://github.com/moment/moment) время для форматирования даты и времени.</span><span class="sxs-lookup"><span data-stu-id="e53e7-110">[moment](https://github.com/moment/moment) for formatting dates and times.</span></span>
+- <span data-ttu-id="e53e7-111">[msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) для проверки подлинности в Azure Active Directory и получения маркеров доступа.</span><span class="sxs-lookup"><span data-stu-id="e53e7-111">[msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) for authenticating to Azure Active Directory and retrieving access tokens.</span></span>
+- <span data-ttu-id="e53e7-112">[Microsoft — Graph — клиент](https://github.com/microsoftgraph/msgraph-sdk-javascript) для совершения звонков в Microsoft Graph.</span><span class="sxs-lookup"><span data-stu-id="e53e7-112">[microsoft-graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) for making calls to Microsoft Graph.</span></span>
 
-<span data-ttu-id="d5e7a-113">Выполните следующую команду в командной панели CLI.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-113">Run the following command in your CLI.</span></span>
+<span data-ttu-id="e53e7-113">Выполните следующую команду в командной панели CLI.</span><span class="sxs-lookup"><span data-stu-id="e53e7-113">Run the following command in your CLI.</span></span>
 
 ```Shell
 npm install react-router-dom@4.3.1 bootstrap@4.3.1 reactstrap@7.1.0 @fortawesome/fontawesome-free@5.7.2
 npm install moment@2.24.0 msal@0.2.4 @microsoft/microsoft-graph-client@1.5.2
 ```
 
-## <a name="design-the-app"></a><span data-ttu-id="d5e7a-114">Проектирование приложения</span><span class="sxs-lookup"><span data-stu-id="d5e7a-114">Design the app</span></span>
+## <a name="design-the-app"></a><span data-ttu-id="e53e7-114">Проектирование приложения</span><span class="sxs-lookup"><span data-stu-id="e53e7-114">Design the app</span></span>
 
-<span data-ttu-id="d5e7a-115">Для начала создайте панель навигации для приложения.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-115">Start by creating a navbar for the app.</span></span> <span data-ttu-id="d5e7a-116">Создайте новый файл в `./src` каталоге `Navbar.js` и добавьте указанный ниже код.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-116">Create a new file in the `./src` directory named `Navbar.js` and add the following code.</span></span>
+<span data-ttu-id="e53e7-115">Для начала создайте панель навигации для приложения.</span><span class="sxs-lookup"><span data-stu-id="e53e7-115">Start by creating a navbar for the app.</span></span> <span data-ttu-id="e53e7-116">Создайте новый файл в `./src` каталоге `Navbar.js` и добавьте указанный ниже код.</span><span class="sxs-lookup"><span data-stu-id="e53e7-116">Create a new file in the `./src` directory named `Navbar.js` and add the following code.</span></span>
 
 ```JSX
 import React from 'react';
@@ -157,7 +157,7 @@ export default class NavBar extends React.Component {
 }
 ```
 
-<span data-ttu-id="d5e7a-117">Затем создайте домашнюю страницу для приложения.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-117">Next, create a home page for the app.</span></span> <span data-ttu-id="d5e7a-118">Создайте новый файл в `./src` каталоге `Welcome.js` и добавьте указанный ниже код.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-118">Create a new file in the `./src` directory named `Welcome.js` and add the following code.</span></span>
+<span data-ttu-id="e53e7-117">Затем создайте домашнюю страницу для приложения.</span><span class="sxs-lookup"><span data-stu-id="e53e7-117">Next, create a home page for the app.</span></span> <span data-ttu-id="e53e7-118">Создайте новый файл в `./src` каталоге `Welcome.js` и добавьте указанный ниже код.</span><span class="sxs-lookup"><span data-stu-id="e53e7-118">Create a new file in the `./src` directory named `Welcome.js` and add the following code.</span></span>
 
 ```JSX
 import React from 'react';
@@ -198,7 +198,7 @@ export default class Welcome extends React.Component {
 }
 ```
 
-<span data-ttu-id="d5e7a-119">Теперь создайте сообщение об ошибке, чтобы отобразить сообщения для пользователя.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-119">Now create an error message display to display messages to the user.</span></span> <span data-ttu-id="d5e7a-120">Создайте новый файл в `./src` каталоге `ErrorMessage.js` и добавьте указанный ниже код.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-120">Create a new file in the `./src` directory named `ErrorMessage.js` and add the following code.</span></span>
+<span data-ttu-id="e53e7-119">Теперь создайте сообщение об ошибке, чтобы отобразить сообщения для пользователя.</span><span class="sxs-lookup"><span data-stu-id="e53e7-119">Now create an error message display to display messages to the user.</span></span> <span data-ttu-id="e53e7-120">Создайте новый файл в `./src` каталоге `ErrorMessage.js` и добавьте указанный ниже код.</span><span class="sxs-lookup"><span data-stu-id="e53e7-120">Create a new file in the `./src` directory named `ErrorMessage.js` and add the following code.</span></span>
 
 ```JSX
 import React from 'react';
@@ -220,7 +220,7 @@ export default class ErrorMessage extends React.Component {
 }
 ```
 
-<span data-ttu-id="d5e7a-121">Теперь, когда эти базовые компоненты определены, обновите приложение, чтобы использовать их.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-121">Now with those basic components defined, update the app to use them.</span></span> <span data-ttu-id="d5e7a-122">Сначала откройте `./src/index.css` файл и замените все его содержимое на приведенный ниже код.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-122">First, open the `./src/index.css` file and replace its entire contents with the following.</span></span>
+<span data-ttu-id="e53e7-121">Теперь, когда эти базовые компоненты определены, обновите приложение, чтобы использовать их.</span><span class="sxs-lookup"><span data-stu-id="e53e7-121">Now with those basic components defined, update the app to use them.</span></span> <span data-ttu-id="e53e7-122">Сначала откройте `./src/index.css` файл и замените все его содержимое на приведенный ниже код.</span><span class="sxs-lookup"><span data-stu-id="e53e7-122">First, open the `./src/index.css` file and replace its entire contents with the following.</span></span>
 
 ```css
 body {
@@ -234,7 +234,7 @@ body {
 }
 ```
 
-<span data-ttu-id="d5e7a-123">Затем откройте `./src/App.js` и замените все содержимое приведенным ниже.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-123">Next, open `./src/App.js` and replace its entire contents with the following.</span></span>
+<span data-ttu-id="e53e7-123">Затем откройте `./src/App.js` и замените все содержимое приведенным ниже.</span><span class="sxs-lookup"><span data-stu-id="e53e7-123">Next, open `./src/App.js` and replace its entire contents with the following.</span></span>
 
 ```JSX
 import React, { Component } from 'react';
@@ -294,6 +294,6 @@ class App extends Component {
 export default App;
 ```
 
-<span data-ttu-id="d5e7a-124">Сохраните все изменения и обновите страницу.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-124">Save all of your changes and refresh the page.</span></span> <span data-ttu-id="d5e7a-125">Теперь приложение должно выглядеть по-другому.</span><span class="sxs-lookup"><span data-stu-id="d5e7a-125">Now, the app should look very different.</span></span>
+<span data-ttu-id="e53e7-124">Сохраните все изменения и обновите страницу.</span><span class="sxs-lookup"><span data-stu-id="e53e7-124">Save all of your changes and refresh the page.</span></span> <span data-ttu-id="e53e7-125">Теперь приложение должно выглядеть по-другому.</span><span class="sxs-lookup"><span data-stu-id="e53e7-125">Now, the app should look very different.</span></span>
 
 ![Снимок экрана с переработанной домашней страницей](images/create-app-01.png)
