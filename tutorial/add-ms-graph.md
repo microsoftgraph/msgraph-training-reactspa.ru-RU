@@ -109,9 +109,9 @@ render() {
         </thead>
         <tbody>
           {this.state.events.map(
-            function(event, index){
+            function(event){
               return(
-                <tr>
+                <tr key={event.id}>
                   <td>{event.organizer.emailAddress.name}</td>
                   <td>{event.subject}</td>
                   <td>{formatDateTime(event.start.dateTime)}</td>
@@ -128,4 +128,4 @@ render() {
 
 В результате получается цикл по коллекции событий и добавляется строка таблицы для каждой из них. Сохраните изменения и перезапустите приложение. Щелкните ссылку **Календарь** , после чего приложение должно отобразить таблицу событий.
 
-![Снимок экрана С таблицей событий](./images/add-msgraph-01.png)
+![Снимок экрана с таблицей событий](./images/add-msgraph-01.png)
