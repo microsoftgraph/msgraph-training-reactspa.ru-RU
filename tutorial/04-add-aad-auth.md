@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-В этом упражнении вы будете расширяем приложение из предыдущего упражнения для поддержки проверки подлинности с помощью Azure AD. Это необходимо для получения необходимого маркера доступа OAuth для вызова Microsoft Graph. На этом этапе библиотека [библиотеки проверки](https://github.com/AzureAD/microsoft-authentication-library-for-js) подлинности (Майкрософт) будет интегрирована в приложение.
+В этом упражнении вы будете расширяем приложение из предыдущего упражнения для поддержки проверки подлинности с помощью Azure AD. Это необходимо для получения необходимого маркера доступа OAuth для вызова Microsoft Graph. На этом этапе библиотека [библиотеки проверки подлинности (Майкрософт](https://github.com/AzureAD/microsoft-authentication-library-for-js) ) будет интегрирована в приложение.
 
 Создайте новый файл в `./src` каталоге `Config.js` и добавьте указанный ниже код.
 
@@ -74,11 +74,24 @@ async login() {
     await this.getUserProfile();
   }
   catch(err) {
-    var errParts = err.split('|');
+    var error = {};
+
+    if (typeof(err) === 'string') {
+      var errParts = err.split('|');
+      error = errParts.length > 1 ?
+        { message: errParts[1], debug: errParts[0] } :
+        { message: err };
+    } else {
+      error = {
+        message: err.message,
+        debug: JSON.stringify(err)
+      };
+    }
+
     this.setState({
       isAuthenticated: false,
       user: {},
-      error: { message: errParts[1], debug: errParts[0] }
+      error: error
     });
   }
 }

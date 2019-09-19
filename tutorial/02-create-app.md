@@ -3,7 +3,7 @@
 Откройте интерфейс командной строки (CLI), перейдите к каталогу, в котором у вас есть права на создание файлов, и выполните следующие команды, чтобы установить средство [создать-реагирующий App](https://www.npmjs.com/package/create-react-app) и создать новое приложение для реагирования.
 
 ```Shell
-npm install create-react-app@3.0.1 -g
+npm install create-react-app@3.1.1 -g
 create-react-app graph-tutorial
 ```
 
@@ -21,15 +21,15 @@ npm start
 - [Начальная](https://github.com/twbs/bootstrap) Загрузка стилей и общих компонентов.
 - [реактстрап](https://github.com/reactstrap/reactstrap) для отклика компонентов на основе начальной загрузки.
 - [фонтавесоме — без](https://github.com/FortAwesome/Font-Awesome) значков.
-- [](https://github.com/moment/moment) время для форматирования даты и времени.
+- [время для форматирования](https://github.com/moment/moment) даты и времени.
 - [msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) для проверки подлинности в Azure Active Directory и получения маркеров доступа.
 - [Microsoft — Graph — клиент](https://github.com/microsoftgraph/msgraph-sdk-javascript) для совершения звонков в Microsoft Graph.
 
 Выполните следующую команду в командной панели CLI.
 
 ```Shell
-npm install react-router-dom@5.0.0 bootstrap@4.3.1 reactstrap@8.0.0 @fortawesome/fontawesome-free@5.8.2
-npm install moment@2.24.0 msal@1.0.0 @microsoft/microsoft-graph-client@1.6.0
+npm install react-router-dom@5.0.1 bootstrap@4.3.1 reactstrap@8.0.1 @fortawesome/fontawesome-free@5.10.2
+npm install moment@2.24.0 msal@1.1.3 @microsoft/microsoft-graph-client@1.7.0
 ```
 
 ## <a name="design-the-app"></a>Проектирование приложения
