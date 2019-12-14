@@ -6,26 +6,26 @@
 
 ### `npm start`
 
-Запускает приложение в режиме разработки.<br>
+Запускает приложение в режиме разработки.<br />
 Откройте [http://localhost:3000](http://localhost:3000) для просмотра в браузере.
 
-При внесении изменений страница будет перезагружена.<br>
+При внесении изменений страница будет перезагружена.<br />
 Кроме того, в консоли будут отображаться ошибки Линт.
 
 ### `npm test`
 
-Запускает средство запуска тестов в интерактивном режиме наблюдения.<br>
+Запускает средство запуска тестов в интерактивном режиме наблюдения.<br />
 Для получения дополнительных сведений см раздел, посвященный [выполнению тестов](https://facebook.github.io/create-react-app/docs/running-tests) .
 
 ### `npm run build`
 
-Создает приложение для производства в `build` папке.<br>
+Создает приложение для производства в `build` папке.<br />
 Он правильно связывается в рабочем режиме и оптимизирует сборку для достижения оптимальной производительности.
 
-Сборка — сжатые, а имена файлов — хэши.<br>
+Сборка — сжатые, а имена файлов — хэши.<br />
 Ваше приложение готово к развертыванию!
 
-Для получения дополнительных сведений [](https://facebook.github.io/create-react-app/docs/deployment) см раздел о развертывании.
+Для получения дополнительных сведений см раздел о [развертывании](https://facebook.github.io/create-react-app/docs/deployment) .
 
 ### `npm run eject`
 
@@ -37,8 +37,32 @@
 
 Вам не нужно всегда использовать `eject`эту возможность. Проверенный набор функций подходит для малых и средних развертываний, и вы не должны быть обязаны использовать эту функцию. Однако мы понимаем, что это средство не было бы удобно использовать, если вы не можете настроить его, когда будете готовы к работе.
 
-## <a name="learn-more"></a>Дополнительные сведения
+## <a name="learn-more"></a>Подробнее
 
 Дополнительные сведения можно узнать в [документации по созданию реагирующих приложений](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Чтобы узнать, как реагировать на отклики, ознакомьтесь с [документацией](https://reactjs.org/)о противоходе.
+Чтобы узнать, как реагировать на [отклики](https://reactjs.org/), ознакомьтесь с документацией о противоходе.
+
+### <a name="code-splitting"></a>Разбиение кода
+
+Этот раздел перемещен здесь:https://facebook.github.io/create-react-app/docs/code-splitting
+
+### <a name="analyzing-the-bundle-size"></a>Анализ размера пакета
+
+Этот раздел перемещен здесь:https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### <a name="making-a-progressive-web-app"></a>Создание прогрессивного веб-приложения
+
+Этот раздел перемещен здесь:https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### <a name="advanced-configuration"></a>Расширенная конфигурация
+
+Этот раздел перемещен здесь:https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### <a name="deployment"></a>Развертывание
+
+Этот раздел перемещен здесь:https://facebook.github.io/create-react-app/docs/deployment
+
+### <a name="npm-run-build-fails-to-minify"></a>`npm run build`не удается Минификация
+
+Этот раздел перемещен здесь:https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

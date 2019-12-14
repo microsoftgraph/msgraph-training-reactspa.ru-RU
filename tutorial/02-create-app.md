@@ -28,13 +28,13 @@ npm start
 Выполните следующую команду в командной панели CLI.
 
 ```Shell
-npm install react-router-dom@5.0.1 bootstrap@4.3.1 reactstrap@8.0.1 @fortawesome/fontawesome-free@5.10.2
-npm install moment@2.24.0 msal@1.1.3 @microsoft/microsoft-graph-client@1.7.0
+npm install react-router-dom@5.1.2 bootstrap@4.4.1 reactstrap@8.1.1 @fortawesome/fontawesome-free@5.11.2
+npm install moment@2.24.0 msal@1.1.3 @microsoft/microsoft-graph-client@2.0.0
 ```
 
 ## <a name="design-the-app"></a>Проектирование приложения
 
-Для начала создайте панель навигации для приложения. Создайте новый файл в `./src` каталоге `Navbar.js` и добавьте указанный ниже код.
+Для начала создайте панель навигации для приложения. Создайте новый файл в `./src` каталоге `NavBar.js` и добавьте указанный ниже код.
 
 ```JSX
 import React from 'react';
