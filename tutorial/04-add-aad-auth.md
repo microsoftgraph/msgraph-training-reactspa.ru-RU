@@ -4,7 +4,7 @@
 
 1. Создайте новый файл в `./src` каталоге `Config.ts` и добавьте указанный ниже код.
 
-    :::code language="typescript" source="../demo/graph-tutorial/src/Config.ts.example":::
+    :::code language="typescript" source="../demo/graph-tutorial/src/Config.example.ts":::
 
     Замените `YOUR_APP_ID_HERE` идентификатором приложения на портале регистрации приложений.
 
@@ -19,7 +19,7 @@
 
     ```typescript
     import React from 'react';
-    import { UserAgentApplication } from 'msal';
+    import { PublicClientApplication } from '@azure/msal-browser';
 
     import { config } from './Config';
 
@@ -42,7 +42,7 @@
     export default function withAuthProvider<T extends React.Component<AuthComponentProps>>
       (WrappedComponent: new(props: AuthComponentProps, context?: any) => T): React.ComponentClass {
       return class extends React.Component<any, AuthProviderState> {
-        private userAgentApplication: UserAgentApplication;
+        private publicClientApplication: PublicClientApplication;
 
         constructor(props: any) {
           super(props);
@@ -53,7 +53,7 @@
           };
 
           // Initialize the MSAL application object
-          this.userAgentApplication = new UserAgentApplication({
+          this.publicClientApplication = new PublicClientApplication({
             auth: {
                 clientId: config.appId,
                 redirectUri: config.redirectUri
@@ -68,9 +68,9 @@
         componentDidMount() {
           // If MSAL already has an account, the user
           // is already logged in
-          var account = this.userAgentApplication.getAccount();
+          const accounts = this.publicClientApplication.getAllAccounts();
 
-          if (account) {
+          if (accounts && accounts.length > 0) {
             // Enhance user object with data from Graph
             this.getUserProfile();
           }
@@ -91,11 +91,12 @@
         async login() {
           try {
             // Login via popup
-            await this.userAgentApplication.loginPopup(
+            await this.publicClientApplication.loginPopup(
                 {
                   scopes: config.scopes,
                   prompt: "select_account"
               });
+
             // After login, get the user's profile
             await this.getUserProfile();
           }
@@ -109,27 +110,34 @@
         }
 
         logout() {
-          this.userAgentApplication.logout();
+          this.publicClientApplication.logout();
         }
 
         async getAccessToken(scopes: string[]): Promise<string> {
           try {
+            const accounts = this.publicClientApplication
+              .getAllAccounts();
+
+            if (accounts.length <= 0) throw new Error('login_required');
             // Get the access token silently
             // If the cache contains a non-expired token, this function
             // will just return the cached token. Otherwise, it will
             // make a request to the Azure OAuth endpoint to get a token
-            var silentResult = await this.userAgentApplication.acquireTokenSilent({
-              scopes: scopes
-            });
+            var silentResult = await this.publicClientApplication
+                .acquireTokenSilent({
+                  scopes: scopes,
+                  account: accounts[0]
+                });
 
             return silentResult.accessToken;
           } catch (err) {
             // If a silent request fails, it may be because the user needs
             // to login or grant consent to one or more of the requested scopes
             if (this.isInteractionRequired(err)) {
-              var interactiveResult = await this.userAgentApplication.acquireTokenPopup({
-                scopes: scopes
-              });
+              var interactiveResult = await this.publicClientApplication
+                  .acquireTokenPopup({
+                    scopes: scopes
+                  });
 
               return interactiveResult.accessToken;
             } else {
@@ -189,32 +197,33 @@
           return (
             error.message.indexOf('consent_required') > -1 ||
             error.message.indexOf('interaction_required') > -1 ||
-            error.message.indexOf('login_required') > -1
+            error.message.indexOf('login_required') > -1 ||
+            error.message.indexOf('no_account_in_silent_request') > -1
           );
         }
       }
     }
     ```
 
-1. Откройте `./src/App.tsx` и добавьте приведенный `import` ниже оператор в начало файла.
+1. Откройте `./src/App.tsx` и добавьте приведенный ниже `import` оператор в начало файла.
 
     ```typescript
     import withAuthProvider, { AuthComponentProps } from './AuthProvider';
     ```
 
-1. Замените строку на `class App extends Component<any> {` приведенную ниже строку.
+1. Замените строку `class App extends Component<any> {` на приведенную ниже строку.
 
     ```typescript
     class App extends Component<AuthComponentProps> {
     ```
 
-1. Замените строку на `export default App;` приведенную ниже строку.
+1. Замените строку `export default App;` на приведенную ниже строку.
 
     ```typescript
     export default withAuthProvider(App);
     ```
 
-1. Сохраните изменения и обновите браузер. Нажмите кнопку входа, и вы будете перенаправлены на `https://login.microsoftonline.com`. Войдите с помощью учетной записи Майкрософт и согласия с запрошенными разрешениями. Страница приложения должна обновляться, отображая маркер.
+1. Сохраните изменения и обновите браузер. Нажмите кнопку входа, и вы увидите всплывающее окно, которое загружается `https://login.microsoftonline.com` . Войдите с помощью учетной записи Майкрософт и согласия с запрошенными разрешениями. Страница приложения должна обновляться, отображая маркер.
 
 ### <a name="get-user-details"></a>Получение сведений о пользователе
 
@@ -226,7 +235,7 @@
 
     При этом реализуется `getUserDetails` функция, которая использует пакет SDK Microsoft Graph для вызова `/me` конечной точки и возврата результата.
 
-1. Откройте `./src/AuthProvider.tsx` и добавьте приведенный `import` ниже оператор в начало файла.
+1. Откройте `./src/AuthProvider.tsx` и добавьте приведенный ниже `import` оператор в начало файла.
 
     ```typescript
     import { getUserDetails } from './GraphService';
@@ -234,7 +243,7 @@
 
 1. Замените имеющуюся функцию `getUserProfile` указанным ниже кодом.
 
-    :::code language="typescript" source="../demo/graph-tutorial/src/AuthProvider.tsx" id="getUserProfileSnippet" highlight="6-15":::
+    :::code language="typescript" source="../demo/graph-tutorial/src/AuthProvider.tsx" id="getUserProfileSnippet" highlight="6-18":::
 
 1. Сохраните изменения и запустите приложение, после чего необходимо вернуться на домашнюю страницу, но пользовательский интерфейс должен измениться, чтобы показать, что вы выполнили вход.
 
@@ -250,4 +259,4 @@
 
 Однако этот маркер кратковременно используется. Срок действия маркера истечет через час после его выдачи. В этом случае маркер обновления становится полезен. Маркер обновления позволяет приложению запросить новый маркер доступа, не требуя от пользователя повторного входа.
 
-Так как приложение использует библиотеку MSAL, нет необходимости внедрять логику хранения или обновления маркеров. `UserAgentApplication` Кэширует маркер в сеансе браузера. `acquireTokenSilent` Метод сначала проверяет кэшированный маркер, и если срок его действия не истек, он возвращается. Если срок действия истек, он использует кэшированный маркер обновления, чтобы получить новый. Этот метод более не используется в следующем модуле.
+Так как приложение использует библиотеку MSAL, нет необходимости внедрять логику хранения или обновления маркеров. `PublicClientApplication`Кэширует маркер в сеансе браузера. `acquireTokenSilent`Метод сначала проверяет кэшированный маркер, и если срок его действия не истек, он возвращается. Если срок действия истек, он использует кэшированный маркер обновления, чтобы получить новый. Этот метод более не используется в следующем модуле.
