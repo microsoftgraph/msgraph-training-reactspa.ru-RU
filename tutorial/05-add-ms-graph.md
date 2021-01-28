@@ -1,24 +1,24 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-В этом упражнении вы добавите Microsoft Graph в приложение. В этом приложении для совершения вызовов в Microsoft Graph будет использоваться [Клиентская библиотека Microsoft](https://github.com/microsoftgraph/msgraph-sdk-javascript) Graph.
+В этом упражнении вы включаете Microsoft Graph в приложение. Для этого приложения вы будете использовать клиентскую библиотеку [Microsoft-graph](https://github.com/microsoftgraph/msgraph-sdk-javascript) для вызова Microsoft Graph.
 
-## <a name="get-calendar-events-from-outlook"></a>Получение событий календаря из Outlook
+## <a name="get-calendar-events-from-outlook"></a>Получить события календаря из Outlook
 
-1. Откройте `./src/GraphService.ts` и добавьте указанную ниже функцию.
+1. Откройте `./src/GraphService.ts` и добавьте следующую функцию.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/GraphService.ts" id="getUserWeekCalendarSnippet":::
 
-    Рассмотрите, что делает этот код.
+    Подумайте, что делает этот код.
 
-    - URL-адрес, который будет вызываться — это `/me/calendarview` .
-    - `header`Метод добавляет `Prefer: outlook.timezone=""` заголовок в запрос, что приводит к тому, что время в отклике будет присутствовать в предпочтительном часовом поясе пользователя.
-    - `query`Метод добавляет `startDateTime` `endDateTime` Параметры и определяет окно представления календаря.
-    - `select`Метод ограничит поля, возвращаемые для каждого события, только теми, которые будут реально использоваться в представлении.
-    - `orderby`Метод сортирует результаты по дате и времени создания, начиная с самого последнего элемента.
-    - `top`Метод ограничит результаты первыми событиями 50.
-    - Если ответ содержит `@odata.nextLink` значение, указывающее, что доступны дополнительные результаты, `PageIterator` объект используется для получения всех результатов с [помощью объекта pageing в коллекции](https://docs.microsoft.com/graph/sdks/paging?tabs=typeScript) .
+    - Будет вызван URL-адрес `/me/calendarview` .
+    - Метод добавляет загон в запрос, в результате чего время в ответе должно быть в предпочитаемом `header` `Prefer: outlook.timezone=""` пользователем часовом поясе.
+    - Метод `query` добавляет `startDateTime` параметры `endDateTime` и параметры, определяющие окно времени для представления календаря.
+    - Этот `select` метод ограничивает поля, возвращаемые для каждого события, только теми полями, которые будут фактически использовать представление.
+    - Метод сортировать результаты по дате и времени их создания, при этом самый последний элемент `orderby` является первым.
+    - Этот `top` метод ограничивает результаты в одной странице 25 событиями.
+    - Если ответ содержит значение, указывающее на то, что доступно больше результатов, объект используется для страницы коллекции, чтобы `@odata.nextLink` `PageIterator` получить все результаты. [](https://docs.microsoft.com/graph/sdks/paging?tabs=typeScript)
 
-1. Создайте компонент реагирования для отображения результатов вызова. Создайте новый файл в `./src` каталоге `Calendar.tsx` и добавьте указанный ниже код.
+1. Создайте компонент React для отображения результатов вызова. Создайте новый файл в `./src` каталоге с именем `Calendar.tsx` и добавьте следующий код.
 
     ```typescript
     import React from 'react';
@@ -49,31 +49,35 @@
       }
 
       async componentDidUpdate() {
-        try {
-          // Get the user's access token
-          var accessToken = await this.props.getAccessToken(config.scopes);
-          // Convert user's Windows time zone ("Pacific Standard Time")
-          // to IANA format ("America/Los_Angeles")
-          // Moment needs IANA format
-          var ianaTimeZone = findOneIana(this.props.user.timeZone);
+        if (this.props.user && !this.state.eventsLoaded)
+        {
+          try {
+            // Get the user's access token
+            var accessToken = await this.props.getAccessToken(config.scopes);
 
-          // Get midnight on the start of the current week in the user's timezone,
-          // but in UTC. For example, for Pacific Standard Time, the time value would be
-          // 07:00:00Z
-          var startOfWeek = moment.tz(ianaTimeZone!.valueOf()).startOf('week').utc();
+            // Convert user's Windows time zone ("Pacific Standard Time")
+            // to IANA format ("America/Los_Angeles")
+            // Moment needs IANA format
+            var ianaTimeZone = findOneIana(this.props.user.timeZone);
 
-          // Get the user's events
-          var events = await getUserWeekCalendar(accessToken, this.props.user.timeZone, startOfWeek);
+            // Get midnight on the start of the current week in the user's timezone,
+            // but in UTC. For example, for Pacific Standard Time, the time value would be
+            // 07:00:00Z
+            var startOfWeek = moment.tz(ianaTimeZone!.valueOf()).startOf('week').utc();
 
-          // Update the array of events in state
-          this.setState({
-            eventsLoaded: true,
-            events: events,
-            startOfWeek: startOfWeek
-          });
-        }
-        catch(err) {
-          this.props.setError('ERROR', JSON.stringify(err));
+            // Get the user's events
+            var events = await getUserWeekCalendar(accessToken, this.props.user.timeZone, startOfWeek);
+
+            // Update the array of events in state
+            this.setState({
+              eventsLoaded: true,
+              events: events,
+              startOfWeek: startOfWeek
+            });
+          }
+          catch (err) {
+            this.props.setError('ERROR', JSON.stringify(err));
+          }
         }
       }
 
@@ -87,15 +91,15 @@
     export default withAuthProvider(Calendar);
     ```
 
-    Теперь это просто отрисовывает массив событий в JSON на странице.
+    На данный момент это просто отрисовка массива событий в JSON на странице.
 
-1. Добавьте этот новый компонент в приложение. Откройте `./src/App.tsx` и добавьте приведенный ниже `import` оператор в начало файла.
+1. Добавьте этот новый компонент в приложение. Откройте `./src/App.tsx` и добавьте следующий отчет в `import` верхнюю часть файла.
 
     ```typescript
     import Calendar from './Calendar';
     ```
 
-1. Добавьте следующий компонент сразу после существующего `<Route>` .
+1. Добавьте следующий компонент сразу после `<Route>` существующего.
 
     ```typescript
     <Route exact path="/calendar"
@@ -106,33 +110,33 @@
       } />
     ```
 
-1. Сохраните изменения и перезапустите приложение. Войдите и щелкните ссылку **Календарь** на панели навигации. Если все работает, вы должны увидеть дамп событий JSON в календаре пользователя.
+1. Сохраните изменения и перезапустите приложение. Войдите и щелкните **ссылку "Календарь"** на панели nav. Если все работает, в календаре пользователя должен быть дамп событий JSON.
 
 ## <a name="display-the-results"></a>Отображение результатов
 
-Теперь вы можете обновить `Calendar` компонент, чтобы отображать события более удобным для пользователя способом.
+Теперь вы можете обновить `Calendar` компонент, чтобы отобразить события более удобным способом.
 
-1. Создайте новый файл в `./src` каталоге `Calendar.css` и добавьте указанный ниже код.
+1. Создайте новый файл в `./src` каталоге с именем `Calendar.css` и добавьте следующий код.
 
     :::code language="css" source="../demo/graph-tutorial/src/Calendar.css":::
 
-1. Создание компонента отклика для отображения событий в один день в виде строк таблицы. Создайте новый файл в `./src` каталоге `CalendarDayRow.tsx` и добавьте указанный ниже код.
+1. Создайте компонент React для отрисовки событий в один день в качестве строк таблицы. Создайте новый файл в `./src` каталоге с именем `CalendarDayRow.tsx` и добавьте следующий код.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/CalendarDayRow.tsx" id="CalendarDayRowSnippet":::
 
-1. Добавьте следующие `import` операторы в верхнюю часть **Calendar. Целевой** .
+1. Добавьте следующие `import` утверждения в верхнюю часть **Calendar.tsx.**
 
     ```typescript
     import CalendarDayRow from './CalendarDayRow';
     import './Calendar.css';
     ```
 
-1. Замените существующую `render` функцию на `./src/Calendar.tsx` приведенную ниже функцию.
+1. Замените `render` существующую `./src/Calendar.tsx` функцию на следующую функцию.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/Calendar.tsx" id="renderSnippet":::
 
-    При этом события разбиваются на соответствующие дни и отрисовывается раздел таблицы для каждого дня.
+    Это разделяет события на соответствующие дни и отрисовка раздела таблицы для каждого дня.
 
-1. Сохраните изменения и перезапустите приложение. Щелкните ссылку **Календарь** , после чего приложение должно отобразить таблицу событий.
+1. Сохраните изменения и перезапустите приложение. Щелкните **ссылку "Календарь",** и приложение должно отрисовки таблицы событий.
 
     ![Снимок экрана с таблицей событий](./images/add-msgraph-01.png)

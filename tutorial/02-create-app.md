@@ -1,54 +1,57 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-В этом разделе вы создадите новое приложение для реагирования.
+В этом разделе вы создадим новое приложение React.
 
-1. Откройте интерфейс командной строки (CLI), перейдите к каталогу, в котором у вас есть права на создание файлов, и выполните следующие команды, чтобы создать приложение для реагирования.
-
-    ```Shell
-    npx create-react-app@3.4.1 graph-tutorial --template typescript
-    ```
-
-1. После завершения выполнения команды перейдите к `graph-tutorial` каталогу в CLI и выполните следующую команду для запуска локального веб-сервера.
+1. Откройте интерфейс командной строки (CLI), перейдите в каталог, в котором у вас есть права на создание файлов, и запустите следующие команды, чтобы создать новое приложение React.
 
     ```Shell
-    npm start
+    npx create-react-app@4.0.1 graph-tutorial --template typescript
     ```
 
-Браузер, используемый по умолчанию, открывается [https://localhost:3000/](https://localhost:3000) с используемой по умолчанию страницей отклика. Если браузер не открыт, откройте его и перейдите к странице, чтобы [https://localhost:3000/](https://localhost:3000) убедиться, что новое приложение работает.
+1. После завершения команды перенастройте каталог в CLI и запустите следующую команду, чтобы `graph-tutorial` запустить локальный веб-сервер.
 
-## <a name="add-node-packages"></a>Добавление пакетов узлов
+    ```Shell
+    yarn start
+    ```
 
-Прежде чем переходить, установите несколько дополнительных пакетов, которые будут использоваться позже:
+    > [!NOTE]
+    > Если [yarn](https://yarnpkg.com/) не установлен, вы можете использовать `npm start` его.
 
-- [реагирующий маршрутизатор — модель DOM](https://github.com/ReactTraining/react-router) для декларативной маршрутизации в приложении реагируя.
-- [Начальная](https://github.com/twbs/bootstrap) Загрузка стилей и общих компонентов.
-- [реактстрап](https://github.com/reactstrap/reactstrap) для отклика компонентов на основе начальной загрузки.
-- [фонтавесоме — без](https://github.com/FortAwesome/Font-Awesome) значков.
-- [время для форматирования](https://github.com/moment/moment) даты и времени.
-- [Windows — IANA](https://github.com/rubenillodo/windows-iana) для перевода часовых поясов Windows в формат IANA.
-- [msal — браузер](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser) для проверки подлинности Azure Active Directory и получения маркеров доступа.
-- [Microsoft — Graph — клиент](https://github.com/microsoftgraph/msgraph-sdk-javascript) для совершения звонков в Microsoft Graph.
+Откроется браузер по умолчанию [https://localhost:3000/](https://localhost:3000) со страницей React по умолчанию. Если браузер не открывается, откройте его и найдите, чтобы убедиться, [https://localhost:3000/](https://localhost:3000) что новое приложение работает.
 
-Выполните следующую команду в командной панели CLI.
+## <a name="add-node-packages"></a>Добавление пакетов node
+
+Прежде чем двигаться дальше, установите некоторые дополнительные пакеты, которые вы будете использовать позже:
+
+- [react-router-dom для](https://github.com/ReactTraining/react-router) декларативной маршрутизирования в приложении React.
+- [bootstrap](https://github.com/twbs/bootstrap) для оформления и общих компонентов.
+- [reactstrap](https://github.com/reactstrap/reactstrap) для компонентов React на основе Bootstrap.
+- [fontawesome-free](https://github.com/FortAwesome/Font-Awesome) для значков.
+- [время](https://github.com/moment/moment) форматирования дат и времени.
+- [windows-iana для](https://github.com/rubenillodo/windows-iana) перевода часовых поясов Windows в формат IANA.
+- [msal-browser](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser) для проверки подлинности в Azure Active Directory и получения маркеров доступа.
+- [microsoft-graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) для звонков в Microsoft Graph.
+
+В CLI запустите следующую команду:
 
 ```Shell
-npm install react-router-dom@5.2.0 @types/react-router-dom@5.1.5 bootstrap@4.5.2 reactstrap@8.5.1 @types/reactstrap@8.5.1 @fortawesome/fontawesome-free@5.14.0
-npm install moment@2.27.0 moment-timezone@0.5.31 windows-iana@4.2.1 @azure/msal-browser@2.1.0 @microsoft/microsoft-graph-client@2.0.0 @types/microsoft-graph@1.18.0
+yarn add react-router-dom@5.2.0 @types/react-router-dom@5.1.7 bootstrap@4.6.0 reactstrap@8.9.0 @types/reactstrap@8.7.2 @fortawesome/fontawesome-free@5.15.2
+yarn add moment@2.29.1 moment-timezone@0.5.32 windows-iana@4.2.1 @azure/msal-browser@2.10.0 @microsoft/microsoft-graph-client@2.2.1 @types/microsoft-graph@1.28.0
 ```
 
 ## <a name="design-the-app"></a>Проектирование приложения
 
-Для начала создайте панель навигации для приложения.
+Для начала создайте панель на панели для приложения.
 
-1. Создайте новый файл в `./src` каталоге `NavBar.tsx` и добавьте указанный ниже код.
+1. Создайте новый файл в `./src` каталоге с именем `NavBar.tsx` и добавьте следующий код.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/NavBar.tsx" id="NavBarSnippet":::
 
-1. Создайте домашнюю страницу для приложения. Создайте новый файл в `./src` каталоге `Welcome.tsx` и добавьте указанный ниже код.
+1. Создайте домашняя страница для приложения. Создайте новый файл в `./src` каталоге с именем `Welcome.tsx` и добавьте следующий код.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/Welcome.tsx" id="WelcomeSnippet":::
 
-1. Создайте сообщение об ошибке для отображения сообщений пользователю. Создайте новый файл в `./src` каталоге `ErrorMessage.tsx` и добавьте указанный ниже код.
+1. Создайте сообщение об ошибке для отображения сообщений пользователю. Создайте новый файл в `./src` каталоге с именем `ErrorMessage.tsx` и добавьте следующий код.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/ErrorMessage.tsx" id="ErrorMessageSnippet":::
 
@@ -56,7 +59,7 @@ npm install moment@2.27.0 moment-timezone@0.5.31 windows-iana@4.2.1 @azure/msal-
 
     :::code language="css" source="../demo/graph-tutorial/src/index.css":::
 
-1. Откройте `./src/App.tsx` и замените все содержимое приведенным ниже.
+1. Откройте `./src/App.tsx` и замените все его содержимое на следующее.
 
     ```typescript
     import React, { Component } from 'react';
@@ -82,7 +85,7 @@ npm install moment@2.27.0 moment-timezone@0.5.31 windows-iana@4.2.1 @azure/msal-
               <NavBar
                 isAuthenticated={this.props.isAuthenticated}
                 authButtonMethod={this.props.isAuthenticated ? this.props.logout : this.props.login}
-                user={this.props.user}/>
+                user={this.props.user} />
               <Container>
                 {error}
                 <Route exact path="/"
@@ -102,6 +105,6 @@ npm install moment@2.27.0 moment-timezone@0.5.31 windows-iana@4.2.1 @azure/msal-
     export default App;
     ```
 
-1. Сохраните все изменения и обновите страницу. Теперь приложение должно выглядеть по-другому.
+1. Сохраните все изменения и перезапустите приложение. Теперь приложение должно выглядеть совершенно по-другому.
 
-    ![Снимок экрана с переработанной домашней страницей](images/create-app-01.png)
+    ![Снимок экрана с измененной домашней страницей](images/create-app-01.png)
